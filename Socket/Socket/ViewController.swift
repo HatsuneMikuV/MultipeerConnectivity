@@ -58,25 +58,27 @@ class ViewController: UIViewController {
   }
   
   @IBAction func sendApp() {
-    var data:Data?
-    if self.sendText.text?.count ?? 0 > 0 {
-      data = self.sendText.text!.data(using: .utf8)
-      self.sendText.text = ""
-    } else if self.data?.count ?? 0 > 0 {
-      data = self.data
-      self.data = nil
-    }
-    
-    if data?.count ?? 0 > 0 {
-      do {
-        try self.mySession!.send(data!,
-                                 toPeers: self.mySession!.connectedPeers,
-                                 with: MCSessionSendDataMode.reliable)
-      } catch _ {
-        print("send error")
+    if self.mySession != nil {
+      var data:Data?
+      if self.sendText.text?.count ?? 0 > 0 {
+        data = self.sendText.text!.data(using: .utf8)
+        self.sendText.text = ""
+      } else if self.data?.count ?? 0 > 0 {
+        data = self.data
+        self.data = nil
       }
-    } else {
-      print("data error")
+      
+      if data?.count ?? 0 > 0 {
+        do {
+          try self.mySession!.send(data!,
+                                   toPeers: self.mySession!.connectedPeers,
+                                   with: MCSessionSendDataMode.reliable)
+        } catch _ {
+          print("send error")
+        }
+      } else {
+        print("data error")
+      }
     }
   }
   
