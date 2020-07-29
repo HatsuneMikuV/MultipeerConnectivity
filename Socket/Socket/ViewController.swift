@@ -139,6 +139,7 @@ extension ViewController : MCSessionDelegate {
       
     case MCSessionState.notConnected:
       print("Not Connected: \(peerID.displayName)")
+      stopWifiSharing()
     @unknown default:
       print("fatalError")
     }

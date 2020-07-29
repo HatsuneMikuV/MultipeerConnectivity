@@ -17,4 +17,6 @@ Point-to-point connection data transmission
          |      --send done-->      |
          |                          |
          |           close          |
+         
 ```
+### A state becomed notConnected, and then stops broadcasting
